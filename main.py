@@ -41,8 +41,7 @@ if len(cnts) > 0:
       if len(approx) == 4:
         docCnt = approx
         break
-cv2.imshow("Original", image)
-cv2.waitKey(0)
+
 # apply a four point perspective transform to both the
 # original image and grayscale image to obtain a top-down
 # birds eye view of the paper
