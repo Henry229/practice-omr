@@ -334,6 +334,38 @@ block_info = [
       'selection_starting_number': 1,
       'Item_type': 'num'
   },
+  {
+      'name': 'Answer_4',
+      'type': 'ANSWER',
+      'marking_direction': 'V',
+      'Group': 'Math',
+      'StartingQuestion': '46',
+      'items': ['1', '2', '3', '4', '5'],
+      'x': 852,
+      'y': 675,
+      'width': 175,
+      'height': 410,
+      'num_of_question': 15,
+      'num_of_selection': 5,
+      'selection_starting_number': 1,
+      'Item_type': 'num'
+  },
+  {
+      'name': 'Answer_5',
+      'type': 'ANSWER',
+      'marking_direction': 'V',
+      'Group': 'Thinking Skills',
+      'StartingQuestion': '1',
+      'items': ['1', '2', '3', '4', '5'],
+      'x': 131,
+      'y': 1143,
+      'width': 175,
+      'height': 410,
+      'num_of_question': 15,
+      'num_of_selection': 5,
+      'selection_starting_number': 1,
+      'Item_type': 'num'
+  },
 ]
 
 # The rest of the code remains unchanged
