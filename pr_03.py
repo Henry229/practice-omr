@@ -441,7 +441,8 @@ def get_recognized_answers(image_path):
 
     return all_answers
 
-image_path = "/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg"
+# image_path = "/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg"
+image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg"
 recognized_answers = get_recognized_answers(image_path)
 print(recognized_answers)
 
