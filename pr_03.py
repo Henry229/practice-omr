@@ -354,10 +354,58 @@ block_info = [
       'name': 'Answer_5',
       'type': 'ANSWER',
       'marking_direction': 'V',
-      'Group': 'Thinking Skills',
+      'Group': 'Thinking_Skills',
       'StartingQuestion': '1',
       'items': ['1', '2', '3', '4', '5'],
       'x': 131,
+      'y': 1143,
+      'width': 175,
+      'height': 410,
+      'num_of_question': 15,
+      'num_of_selection': 5,
+      'selection_starting_number': 1,
+      'Item_type': 'num'
+  },
+  {
+      'name': 'Answer_6',
+      'type': 'ANSWER',
+      'marking_direction': 'V',
+      'Group': 'Thinking_Skills',
+      'StartingQuestion': '16',
+      'items': ['1', '2', '3', '4', '5'],
+      'x': 372,
+      'y': 1143,
+      'width': 175,
+      'height': 410,
+      'num_of_question': 15,
+      'num_of_selection': 5,
+      'selection_starting_number': 1,
+      'Item_type': 'num'
+  },
+  {
+      'name': 'Answer_7',
+      'type': 'ANSWER',
+      'marking_direction': 'V',
+      'Group': 'Thinking_Skills',
+      'StartingQuestion': '31',
+      'items': ['1', '2', '3', '4', '5'],
+      'x': 612,
+      'y': 1143,
+      'width': 175,
+      'height': 410,
+      'num_of_question': 15,
+      'num_of_selection': 5,
+      'selection_starting_number': 1,
+      'Item_type': 'num'
+  },
+  {
+      'name': 'Answer_8',
+      'type': 'ANSWER',
+      'marking_direction': 'V',
+      'Group': 'Thinking_Skills',
+      'StartingQuestion': '46',
+      'items': ['1', '2', '3', '4', '5'],
+      'x': 852,
       'y': 1143,
       'width': 175,
       'height': 410,
@@ -372,16 +420,28 @@ block_info = [
 # ...
 
 # Load and preprocess the image
-image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg"
-image = cv2.imread(image_path)
+def get_recognized_answers(image_path):
+    
+    image = cv2.imread(image_path)
 
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-_, thresholded_otsu = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-kernel = np.ones((3, 3), np.uint8)
-opened_otsu = cv2.morphologyEx(thresholded_otsu, cv2.MORPH_OPEN, kernel, iterations=2)
-closed_otsu = cv2.morphologyEx(opened_otsu, cv2.MORPH_CLOSE, kernel, iterations=2)
-final_block_image = cv2.GaussianBlur(closed_otsu, (3, 3), 0)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+    _, thresholded_otsu = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    kernel = np.ones((3, 3), np.uint8)
+    opened_otsu = cv2.morphologyEx(thresholded_otsu, cv2.MORPH_OPEN, kernel, iterations=2)
+    closed_otsu = cv2.morphologyEx(opened_otsu, cv2.MORPH_CLOSE, kernel, iterations=2)
+    final_block_image = cv2.GaussianBlur(closed_otsu, (3, 3), 0)
 
-# Rest of the code for processing and visualizations...
+    # Recognize answers using the provided functions
+    
+    all_answers = []
+    for block in block_info:
+        answers, _, _ = recognize_answers(final_block_image, block, recognize_marking_circular)
+        all_answers.extend(answers)
+
+    return all_answers
+
+image_path = "/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg"
+recognized_answers = get_recognized_answers(image_path)
+print(recognized_answers)
 
