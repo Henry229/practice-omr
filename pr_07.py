@@ -25,7 +25,7 @@ def sort_contour(contours, from_idx, to_idx, sortOrder):
         contours[from_idx:to_idx] = sorted(contours[from_idx:to_idx], key=sortLeftToRight)
 
 # 이미지 로드
-image = cv2.imread('/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg', cv2.IMREAD_GRAYSCALE)
+image = cv2.imread('/Users/henry/Downloads/Math-Thinking-NSW.jpeg', cv2.IMREAD_GRAYSCALE)
 
 # 이진화
 _, thresh = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
