@@ -66,7 +66,8 @@ block_info = {
 }
 
 # Extracting answers using the provided block_info
-image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg"
+# image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg"
+image_path = "/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg"
 detected_answers = extract_answers_from_block(image_path, block_info)
 
 # Printing the detected answers
