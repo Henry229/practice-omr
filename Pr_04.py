@@ -1,3 +1,7 @@
+import cv2
+import numpy as np
+from block_info_module import block_info
+
 # Define the recognize_answers function with the additional parameters
 def recognize_answers(image_path, block_info):
     # 이미지를 불러옵니다.

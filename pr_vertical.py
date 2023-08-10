@@ -1,3 +1,4 @@
+# Importing necessary libraries and rerunning the provided code
 import cv2
 import numpy as np
 
@@ -36,6 +37,7 @@ def recognize_marking_circular(image):
             return True
     return False
 
+# The block_info was already defined in the initial code provided by the user.
 # Define the block_info
 block_info = [
     {
@@ -139,9 +141,8 @@ block_info = [
   },    
 ]
 
-
 # Load and preprocess the image
-image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg"  
+image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg" 
 image = cv2.imread(image_path)
 
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -152,65 +153,21 @@ opened_otsu = cv2.morphologyEx(thresholded_otsu, cv2.MORPH_OPEN, kernel, iterati
 closed_otsu = cv2.morphologyEx(opened_otsu, cv2.MORPH_CLOSE, kernel, iterations=2)
 final_block_image = cv2.GaussianBlur(closed_otsu, (3, 3), 0)
 
-# Crop the block from the image
-block_image = final_block_image[block_info['y']:block_info['y']+block_info['height'], block_info['x']:block_info['x']+block_info['width']]
+# Aggregate results from all blocks
+all_answers = []
+all_recognized_numbers = []
+all_marking_images = []
 
-# Recognize the answers in the block with the new method
-answers, recognized_numbers, marking_images = recognize_answers(block_image, block_info, recognize_func=recognize_marking_circular)
+for block in block_info:
+    # Crop the block from the image
+    block_image = final_block_image[block['y']:block['y']+block['height'], block['x']:block['x']+block['width']]
+    # Recognize the answers in the block with the new method
+    answers, recognized_numbers, marking_images = recognize_answers(block_image, block, recognize_func=recognize_marking_circular)
+    all_answers.extend(answers)
+    all_recognized_numbers.extend(recognized_numbers)
+    all_marking_images.extend(marking_images)
 
-print('Recognized answers:', answers)
-print('Recognized numbers:', recognized_numbers)
+# all_answers, all_recognized_numbers
 
-# {
-#   'name': 'Test Level1',
-#   'type': 'TEST_LEVEL1',
-#   'marking_direction': 'V',
-#   'items': ['Year1', 'Year2', 'Year3', 'Year4', 'Year5', 'Year6'],
-#   'x': 707,
-#   'y': 295,
-#   'width': 37,
-#   'height': 176,
-#   'num_of_question': 1,
-#   'num_of_selection': 6,
-#   'selection_starting_number': 0
-# },
-# {
-#   'name': 'Test Level2',
-#   'type': 'TEST_LEVEL2',
-#   'marking_direction': 'V',
-#   'items': ['Year7', 'Year8', 'Year9', 'Year10', 'Year11', 'Year12'],
-#   'x': 791,
-#   'y': 295,
-#   'width': 38,
-#   'height': 176,
-#   'num_of_question': 1,
-#   'num_of_selection': 6,
-#   'selection_starting_number': 0
-# },
-# {
-#   'name': 'Test No',
-#   'type': 'TEST_NO',
-#   'marking_direction': 'V',
-#   'items': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-#   'x': 894,
-#   'y': 295,
-#   'width': 87,
-#   'height': 293,
-#   'num_of_question': 2,
-#   'num_of_selection': 10,
-#   'selection_starting_number': 0
-# },
-# {
-#   'name': 'Branch No',
-#   'type': 'BRANCH_NO',
-#   'marking_direction': 'V',
-#   'items': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-#   'x': 1001,
-#   'y': 295,
-#   'width': 89,
-#   'height': 293,
-#   'num_of_question': 2,
-#   'num_of_selection': 10,
-#   'selection_starting_number': 0
-# }
-# ]
+print('Recognized answers:', all_answers)
+print('Recognized numbers:', all_recognized_numbers)
