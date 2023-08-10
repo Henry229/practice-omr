@@ -1,6 +1,7 @@
 # Importing necessary libraries and rerunning the provided code
 import cv2
 import numpy as np
+from block_info_module import block_info
 
 # Define the function to recognize answers
 def recognize_answers(image, block_info, recognize_func):
@@ -39,107 +40,107 @@ def recognize_marking_circular(image):
 
 # The block_info was already defined in the initial code provided by the user.
 # Define the block_info
-block_info = [
-    {
-    'name': 'Student No',
-    'type': 'STUDENT_NO',
-    'marking_direction': 'V',
-    'items': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-    'x': 69,
-    'y': 338,
-    'width': 376,
-    'height': 280,
-    'num_of_question': 8,
-    'num_of_selection': 10,
-    'selection_starting_number': 0,
-    'ActualWidth': 1122,
-    'ActualHeight': 1636
-    },
-    {
-      'name': 'Test Type',
-      'type': 'TEST_TYPE',
-      'marking_direction': 'V',
-      'items': ['Entrance', 'Selective_Trial_Test', 'Scholarship_Test', 'OC_Trial_Test', 'Class_Test', 'DUMMY', 'Blended_OCTT', 'Blended_STT'],
-      'x': 441,
-      'y': 350,
-      'width': 38,
-      'height': 236,
-      'num_of_question': 1,
-      'num_of_selection': 8,
-      'selection_starting_number': 0,
-      'Item_type': 'combo'
-  },
-  {
-      'name': 'Test Subj',
-      'type': 'SUBJECT',
-      'marking_direction': 'V',
-      'items': ['Maths', 'GA', 'Reading', 'Voca', 'TextType', 'Part1', 'Part2', 'Science', 'Others'],
-      'x': 601,
-      'y': 350,
-      'width': 36,
-      'height': 261,
-      'num_of_question': 1,
-      'num_of_selection': 9,
-      'selection_starting_number': 0,
-      'Item_type': 'multi'
-  },
-  {
-      'name': 'Test Level1',
-      'type': 'TEST_LEVEL1',
-      'marking_direction': 'V',
-      'items': ['Year1', 'Year2', 'Year3', 'Year4', 'Year5', 'Year6'],
-      'x': 685,
-      'y': 350,
-      'width': 27,
-      'height': 176,
-      'num_of_question': 1,
-      'num_of_selection': 6,
-      'selection_starting_number': 0,
-      'Item_type': 'combo'
-  },
-  {
-      'name': 'Test Level2',
-      'type': 'TEST_LEVEL2',
-      'marking_direction': 'V',
-      'items': ['Year7', 'Year8', 'Year9', 'Year10', 'Year11', 'Year12'],
-      'x': 767,
-      'y': 350,
-      'width': 27,
-      'height': 176,
-      'num_of_question': 1,
-      'num_of_selection': 6,
-      'selection_starting_number': 0,
-      'Item_type': 'combo'
-  },
-  {
-      'name': 'Test No',
-      'type': 'TEST_NO',
-      'marking_direction': 'V',
-      'items': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-      'x': 854,
-      'y': 350,
-      'width': 82,
-      'height': 265,
-      'num_of_question': 2,
-      'num_of_selection': 10,
-      'selection_starting_number': 0,
-      'Item_type': 'num'
-  },
-  {
-      'name': 'Branch No',
-      'type': 'BRANCH_NO',
-      'marking_direction': 'V',
-      'items': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-      'x': 952,
-      'y': 350,
-      'width': 82,
-      'height': 265,
-      'num_of_question': 2,
-      'num_of_selection': 10,
-      'selection_starting_number': 0,
-      'Item_type': 'num'
-  },    
-]
+# block_info = [
+#     {
+#     'name': 'Student No',
+#     'type': 'STUDENT_NO',
+#     'marking_direction': 'V',
+#     'items': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+#     'x': 69,
+#     'y': 338,
+#     'width': 376,
+#     'height': 280,
+#     'num_of_question': 8,
+#     'num_of_selection': 10,
+#     'selection_starting_number': 0,
+#     'ActualWidth': 1122,
+#     'ActualHeight': 1636
+#     },
+#     {
+#       'name': 'Test Type',
+#       'type': 'TEST_TYPE',
+#       'marking_direction': 'V',
+#       'items': ['Entrance', 'Selective_Trial_Test', 'Scholarship_Test', 'OC_Trial_Test', 'Class_Test', 'DUMMY', 'Blended_OCTT', 'Blended_STT'],
+#       'x': 441,
+#       'y': 350,
+#       'width': 38,
+#       'height': 236,
+#       'num_of_question': 1,
+#       'num_of_selection': 8,
+#       'selection_starting_number': 0,
+#       'Item_type': 'combo'
+#   },
+#   {
+#       'name': 'Test Subj',
+#       'type': 'SUBJECT',
+#       'marking_direction': 'V',
+#       'items': ['Maths', 'GA', 'Reading', 'Voca', 'TextType', 'Part1', 'Part2', 'Science', 'Others'],
+#       'x': 601,
+#       'y': 350,
+#       'width': 36,
+#       'height': 261,
+#       'num_of_question': 1,
+#       'num_of_selection': 9,
+#       'selection_starting_number': 0,
+#       'Item_type': 'multi'
+#   },
+#   {
+#       'name': 'Test Level1',
+#       'type': 'TEST_LEVEL1',
+#       'marking_direction': 'V',
+#       'items': ['Year1', 'Year2', 'Year3', 'Year4', 'Year5', 'Year6'],
+#       'x': 685,
+#       'y': 350,
+#       'width': 27,
+#       'height': 176,
+#       'num_of_question': 1,
+#       'num_of_selection': 6,
+#       'selection_starting_number': 0,
+#       'Item_type': 'combo'
+#   },
+#   {
+#       'name': 'Test Level2',
+#       'type': 'TEST_LEVEL2',
+#       'marking_direction': 'V',
+#       'items': ['Year7', 'Year8', 'Year9', 'Year10', 'Year11', 'Year12'],
+#       'x': 767,
+#       'y': 350,
+#       'width': 27,
+#       'height': 176,
+#       'num_of_question': 1,
+#       'num_of_selection': 6,
+#       'selection_starting_number': 0,
+#       'Item_type': 'combo'
+#   },
+#   {
+#       'name': 'Test No',
+#       'type': 'TEST_NO',
+#       'marking_direction': 'V',
+#       'items': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+#       'x': 854,
+#       'y': 350,
+#       'width': 82,
+#       'height': 265,
+#       'num_of_question': 2,
+#       'num_of_selection': 10,
+#       'selection_starting_number': 0,
+#       'Item_type': 'num'
+#   },
+#   {
+#       'name': 'Branch No',
+#       'type': 'BRANCH_NO',
+#       'marking_direction': 'V',
+#       'items': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+#       'x': 952,
+#       'y': 350,
+#       'width': 82,
+#       'height': 265,
+#       'num_of_question': 2,
+#       'num_of_selection': 10,
+#       'selection_starting_number': 0,
+#       'Item_type': 'num'
+#   },    
+# ]
 
 # Load and preprocess the image
 image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg" 
@@ -160,6 +161,7 @@ all_marking_images = []
 
 for block in block_info:
     # Crop the block from the image
+    print('block name:', block['name'])
     block_image = final_block_image[block['y']:block['y']+block['height'], block['x']:block['x']+block['width']]
     # Recognize the answers in the block with the new method
     answers, recognized_numbers, marking_images = recognize_answers(block_image, block, recognize_func=recognize_marking_circular)
