@@ -46,8 +46,8 @@ def position_corrected_extract_answers(image_path, block_info):
     return answers
 
 # 제공된 이미지 다시 로드
-image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg"
-# image_path = "/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg"
+image_path = "/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg"
+# image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg"
         
 # "student no" 블록을 처리하도록 함수를 업데이트 후 답안 추출
 detected_answers_updated = {}

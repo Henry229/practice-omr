@@ -143,7 +143,8 @@ def recognize_marking_circular(image):
 # ]
 
 # Load and preprocess the image
-image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg" 
+image_path = "/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg" 
+# image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg" 
 image = cv2.imread(image_path)
 
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
