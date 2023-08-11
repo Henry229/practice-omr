@@ -69,8 +69,8 @@ def horizontal_block_image(image_path, block_info):
     return answers
     
 # Load and preprocess the image
-image_path = "/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg"
-# image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg" 
+# image_path = "/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg"
+image_path = "/Users/henry/Downloads/Math-Thinking-NSW.jpeg" 
 image = cv2.imread(image_path)
 
 vertical_block_image = vertical_preprocess(image)
