@@ -21,9 +21,23 @@ def sort_contour(cnts, from_idx, to_idx, method="top-to-bottom"):
         sub_cnts.sort(key=lambda c: cv2.boundingRect(c)[0])
     cnts[from_idx:to_idx] = sub_cnts
     return cnts
+
+# Re-defining the indices_to_arr_final function
+def indices_to_arr_final(indices):
+    # Initialize an array with default values
+    arr = [-1] * 8
+    
+    for index in indices:
+        # Determine the column (position in arr) and the value
+        col = index % 8
+        value = index // 8
+        
+        arr[col] = value
+    
+    return arr
   
 # Load the image
-image = cv2.imread('/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg', cv2.IMREAD_GRAYSCALE)
+image = cv2.imread('/Users/henry/Downloads/Math-Thinking-NSW.jpeg', cv2.IMREAD_GRAYSCALE)
 roi = image[338:338+280, 69:69+376]
 
 # Thresholding
@@ -47,12 +61,12 @@ questionCnts = sort_contour(questionCnts, 0, len(questionCnts), "top-to-bottom")
 for i in range(0, len(questionCnts), 8):
     questionCnts = sort_contour(questionCnts, i, i+8, "left-to-right")
 
-num = 1
-id = 0
+
 recognitionValue = 50  # This value might need adjustment based on your OMR sheet
 
 # 각 마킹된 동그라미에 대한 정보와 계산된 ID 값을 저장하는 리스트를 생성합니다.
 marking_info = []
+num = 0
 
 for i in range(len(questionCnts)):
     mask = np.zeros(thresh.shape, dtype=np.uint8)
@@ -60,13 +74,17 @@ for i in range(len(questionCnts)):
     mask = cv2.bitwise_and(thresh, thresh, mask=mask)
     total = cv2.countNonZero(mask)
     if total > recognitionValue:
-        id += num * 10 ** (7 - (i % 8))
         x, y, w, h = cv2.boundingRect(questionCnts[i])
         marking_info.append({"x": x, "y": y, "i": i, "value": num, "id_contribution": num * 10 ** (7 - (i % 8))})
         num += 1
 
+# Extracting the recognized indices from marking_info
+recognized_indices = [mark["i"] for mark in marking_info]
+arr_simplified = indices_to_arr_final(recognized_indices)
+
+# arr_simplified, marking_info
+print("arr:", arr_simplified)
 print("marking_info:", marking_info)
-print("Recognized ID:", id)
     # questionCnts[i:i+8] = sort_contour(questionCnts[i:i+8], "left-to-right")
     # questionCnts[i:i+8] = sort_contour(questionCnts[i:i+8], "left-to-right")
 

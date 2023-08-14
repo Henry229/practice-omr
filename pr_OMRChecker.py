@@ -2,10 +2,14 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import json
+from  pr_template import template_data
 
 def preprocess_image_for_recognition(image):
+     # Convert to grayscale
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
     # 1. Gaussian blur
-    blurred = cv2.GaussianBlur(image, (5, 5), 0)
+    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
     
     # 2. Thresholding using OTSU's method
     _, thresh = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
@@ -33,7 +37,7 @@ def recognize_marked_answers_using_pixel_ratio(image, bubble_coordinates, bubble
             
             # Consider the bubble as marked if the black pixel ratio is above the threshold
             if black_pixel_ratio > threshold_ratio:
-                field_answers.append(1)
+                field_answers.append(1) ???
             else:
                 field_answers.append(0)
         
@@ -57,11 +61,11 @@ def visualize_correct_marked_answers(image, bubble_coordinates, bubble_dimension
     return visualized_image
   
 # Load bubble coordinates from the saved JSON file
-with open('./pr_template.json', 'r') as file:
+with open('py_template_codinate.json', 'r') as file:
     loaded_bubble_coordinates = json.load(file)
 
 # Load image
-omr_image = cv2.imread('/Users/henrychun/Downloads/Math-Thinking-NSW.jpeg')
+omr_image = cv2.imread('/Users/henry/Downloads/Math-Thinking-NSW.jpeg')
 
 # Preprocess the image
 preprocessed_image = preprocess_image_for_recognition(omr_image)
@@ -72,8 +76,8 @@ marked_answers = recognize_marked_answers_using_pixel_ratio(preprocessed_image, 
 # Visualize the correctly marked answers on the original image
 visualized_image_with_correct_markings = visualize_correct_marked_answers(omr_image, loaded_bubble_coordinates, template_data["bubbleDimensions"], marked_answers)
 
-# Show the visualized image
-plt.figure(figsize=(12, 20))
-plt.imshow(cv2.cvtColor(visualized_image_with_correct_markings, cv2.COLOR_BGR2RGB))
-plt.axis('off')
-plt.show()
+# # Show the visualized image
+# plt.figure(figsize=(12, 20))
+# plt.imshow(cv2.cvtColor(visualized_image_with_correct_markings, cv2.COLOR_BGR2RGB))
+# plt.axis('off')
+# plt.show()

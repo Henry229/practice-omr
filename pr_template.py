@@ -1,4 +1,4 @@
-{
+template_data = {
   "pageDimensions": [1169, 1654],
   "bubbleDimensions": [18, 18],
   "preProcessors": [
