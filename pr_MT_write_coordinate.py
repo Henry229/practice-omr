@@ -1,15 +1,15 @@
 import json
-from  pr_template import template_data
+from  pr_sel_MT_block_info import sel_MT_block_data
 
 # Calculate the coordinates for each bubble based on the template.json
 
 bubble_coordinates = {}
 
-for field, details in template_data["fieldBlocks"].items():
+for field, details in sel_MT_block_data["fieldBlocks"].items():
     field_coordinates = []
     
     origin_x, origin_y = details["origin"]
-    bubble_w, bubble_h = template_data["bubbleDimensions"]
+    bubble_w, bubble_h = sel_MT_block_data["bubbleDimensions"]
     field_type = details["fieldType"]
     bubbles_gap = details["bubblesGap"]
     labels_gap = details["labelsGap"]
