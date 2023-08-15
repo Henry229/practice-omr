@@ -1,32 +1,39 @@
 import json
-from  pr_sel_MT_block_info import sel_MT_block_data
+from  pr_template import template_data
 
 # Calculate the coordinates for each bubble based on the template.json
 
 bubble_coordinates = {}
 
-for field, details in sel_MT_block_data["fieldBlocks"].items():
+for field, details in template_data["fieldBlocks"].items():
     field_coordinates = []
     
-    bubble_w, bubble_h = sel_MT_block_data["bubbleDimensions"]
     origin_x, origin_y = details["origin"]
-    field_type = details["marking_direction"]
+    bubble_w, bubble_h = template_data["bubbleDimensions"]
+    field_type = details["fieldType"]
     bubbles_gap = details["bubblesGap"]
     labels_gap = details["labelsGap"]
     
     # Determine the number of choices based on fieldType
-    num_choices = details["num_of_selection"]
+    if "QTYPE_MCQ" in field_type:
+        num_choices = int(field_type[-1])
+    elif field_type == "QTYPE_INT":
+        num_choices = 10
 
     # Determine the orientation (horizontal or vertical) based on fieldType
-    if field_type == "V":
+    if field_type == "QTYPE_INT":
         orientation = "vertical"
     else:
         orientation = "horizontal"
     
     # Check for the range in "fieldLabels" and iterate over it for blocks like "Math_Block_Q1"
-    field_label = details["num_of_question"]
-    start = int(details.get('StartingQuestion', 1))
-    end = int(details.get('EndingQuestion', field_label))
+    field_label = details["fieldLabels"][0]
+    if ".." in field_label:
+        start_label, end_label = field_label.split("..")
+        start = int("".join([char for char in start_label if char.isdigit()]))
+        end = int("".join([char for char in end_label if char.isdigit()]))
+    else:
+        start, end = 1, len(details["fieldLabels"])
     
     # Calculate coordinates for each bubble
     for question_num in range(start, end + 1):
@@ -53,7 +60,7 @@ for field, details in sel_MT_block_data["fieldBlocks"].items():
     bubble_coordinates[field] = field_coordinates
 
 # Save the calculated coordinates to a JSON file
-bubble_coordinates_filepath = "/Users/henry/Downloads/selective_Math_Thinking_coordinates.json"
+bubble_coordinates_filepath = "/Users/henrychun/Downloads/selective_Math_Thinking_coordinates.json"
 with open(bubble_coordinates_filepath, 'w') as file:
     json.dump(bubble_coordinates, file, indent=4)
 

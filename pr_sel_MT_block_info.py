@@ -20,7 +20,7 @@ sel_MT_block_data = {
           'origin': [81, 350],
           'width': 376,
           'height': 280,
-          'bubbleGap': 27,
+          'bubblesGap': 27,
           "labelsGap": 44.5,
           'num_of_question': 8,
           'num_of_selection': 10,
@@ -117,12 +117,13 @@ sel_MT_block_data = {
           'selection_starting_number': 0,
           'Item_type': 'num'
       },
-      'M_Answer_1':{
+      'Math_Answer_1':{
           'name': 'M_Answer_1',
           'type': 'ANSWER',
           'marking_direction': 'H',
           'Group': 'Math',
           'StartingQuestion': '1',
+          'EndingQuestion': '15',
           'items': ['1', '2', '3', '4', '5'],
           'origin': [140, 679],
           'width': 175,
@@ -134,12 +135,13 @@ sel_MT_block_data = {
           'selection_starting_number': 1,
           'Item_type': 'num'
       },
-      'M_Answer_16': {
+      'Math_Answer_16': {
           'name': 'M_Answer_16',
           'type': 'ANSWER',
           'marking_direction': 'H',
           'Group': 'Math',
           'StartingQuestion': '16',
+          'EndingQuestion': '30',
           'items': ['1', '2', '3', '4', '5'],
           'origin': [379, 680],
           'width': 175,
@@ -151,12 +153,13 @@ sel_MT_block_data = {
           'selection_starting_number': 1,
           'Item_type': 'num'
       },
-      'M_Answer_31': {
+      'Math_Answer_31': {
           'name': 'M_Answer_31',
           'type': 'ANSWER',
           'marking_direction': 'H',
           'Group': 'Math',
           'StartingQuestion': '31',
+          'EndingQuestion': '35',
           'items': ['1', '2', '3', '4', '5'],
           'origin': [622, 680],
           'width': 175,
@@ -168,12 +171,13 @@ sel_MT_block_data = {
           'selection_starting_number': 1,
           'Item_type': 'num'
       },
-      'T_Answer_1':{
+      'Think_Answer_1':{
           'name': 'T_Answer_1',
           'type': 'ANSWER',
           'marking_direction': 'H',
           'Group': 'Thinking_Skills',
           'StartingQuestion': '1',
+          'EndingQuestion': '15',
           'items': ['1', '2', '3', '4'],
           'origin': [140, 1148],
           'width': 175,
@@ -185,12 +189,13 @@ sel_MT_block_data = {
           'selection_starting_number': 1,
           'Item_type': 'num'
       },
-      'T_Answer_16':{
+      'Think_Answer_16':{
           'name': 'T_Answer_16',
           'type': 'ANSWER',
           'marking_direction': 'H',
           'Group': 'Thinking_Skills',
           'StartingQuestion': '16',
+          'EndingQuestion': '30',
           'items': ['1', '2', '3', '4'],
           'origin': [380, 1148],
           'width': 175,
@@ -202,12 +207,13 @@ sel_MT_block_data = {
           'selection_starting_number': 1,
           'Item_type': 'num'
       },
-      'T_Answer_31':{
+      'Think_Answer_31':{
           'name': 'T_Answer_31',
           'type': 'ANSWER',
           'marking_direction': 'H',
           'Group': 'Thinking_Skills',
           'StartingQuestion': '31',
+          'EndingQuestion': '40',
           'items': ['1', '2', '3', '4'],
           'origin': [621, 1149],
           'width': 175,
