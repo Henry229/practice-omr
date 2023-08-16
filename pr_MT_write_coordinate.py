@@ -53,7 +53,7 @@ for field, details in sel_MT_block_data["fieldBlocks"].items():
     bubble_coordinates[field] = field_coordinates
 
 # Save the calculated coordinates to a JSON file
-bubble_coordinates_filepath = "/Users/henry/Downloads/selective_Math_Thinking_coordinates.json"
+bubble_coordinates_filepath = "/Users/henrychun/Downloads/selective_Math_Thinking_coordinates.json"
 with open(bubble_coordinates_filepath, 'w') as file:
     json.dump(bubble_coordinates, file, indent=4)
 
